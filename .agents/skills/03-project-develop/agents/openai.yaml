@@ -1,0 +1,4 @@
+interface:
+  display_name: "03 Project Develop"
+  short_description: "Build a project from TODO.md"
+  default_prompt: "Read prd.md and TODO.md, choose the declared framework path, implement the app, verify it, and update TODO.md/prd.md."

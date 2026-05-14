@@ -1,0 +1,4 @@
+interface:
+  display_name: "02 Project Prepare"
+  short_description: "Read prd.md and generate TODO.md"
+  default_prompt: "Read prd.md and generate TODO.md"
