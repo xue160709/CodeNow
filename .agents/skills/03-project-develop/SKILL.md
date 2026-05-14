@@ -1,13 +1,13 @@
 ---
 name: 03-project-develop
-description: 按仓库根目录 TODO.md、prd.md、design-system/ 设计系统和 ui-ux-pro-max Skill 写代码实现项目。适用于用户已经确认 Project Prepare 生成的 TODO.md，并要求开始开发、执行 TODO、实现 MVP、写代码、搭建 Next.js/Electron/Chrome Extension 项目时。根据 TODO 中的主框架选择 Next.js、Electron 或 vite-web-extension，以 prd.md 确认产品范围，以 design-system/ 作为完整设计来源，调用 ui-ux-pro-max 辅助 UI/UX 落地，完成实现、依赖安装、验证、交付操作说明、更新 TODO.md，并调用 update-prd 创建或重建 prd/ 文档体系。
+description: 按仓库根目录 TODO.md、prd.md、design-system/ 设计系统和 ui-ux-pro-max Skill 写代码实现项目。适用于用户已经确认 Project Prepare 生成的 TODO.md，并要求开始开发、执行 TODO、实现 MVP、写代码、搭建 Next.js/Electron/Chrome Extension 项目时。根据 TODO 中的主框架选择 Next.js、Electron 或 vite-web-extension，以 prd.md 确认产品范围，以 design-system/ 作为完整设计来源，调用 ui-ux-pro-max 辅助 UI/UX 落地，完成实现、依赖安装、验证、交付操作说明、更新 TODO.md，调用 update-prd 创建或重建 prd/ 文档体系，并在仓库根目录创建或更新 README.md。
 ---
 
-# Project Develop：TODO.md → 框架实现 → 依赖安装 → 验证 → 重建 prd/ → 交付指引
+# Project Develop：TODO.md → 框架实现 → 依赖安装 → 验证 → 重建 prd/ 与 README.md → 交付指引
 
 ## 概述
 
-本 Skill 负责把计划落成可运行项目。它以 `TODO.md` 为开发合同，以 `prd.md` 为简版产品依据，以仓库根目录 `design-system/` 为完整设计依据，并调用 `ui-ux-pro-max` Skill 辅助 UI/UX 落地。按 TODO 中声明的主框架执行：Next.js、Electron 或 vite-web-extension。开发完成后，必须安装/确认依赖、运行验证、调用 `update-prd` 创建或重建仓库根目录 `prd/` 文档体系，并向用户说明如何运行或安装成可使用的工具。
+本 Skill 负责把计划落成可运行项目。它以 `TODO.md` 为开发合同，以 `prd.md` 为简版产品依据，以仓库根目录 `design-system/` 为完整设计依据，并调用 `ui-ux-pro-max` Skill 辅助 UI/UX 落地。按 TODO 中声明的主框架执行：Next.js、Electron 或 vite-web-extension。开发完成后，必须安装/确认依赖、运行验证、调用 `update-prd` 创建或重建仓库根目录 `prd/` 文档体系，创建或更新仓库根目录 `README.md`，并向用户说明如何运行或安装成可使用的工具。
 
 如果项目还没有 `TODO.md`、TODO 未写明主框架，或用户还没确认开发范围，先使用 `project-prepare` 准备计划，不要自行跳过计划阶段。
 
@@ -154,11 +154,27 @@ Token Plan 提示文案：
 请创建或更新仓库根目录 prd/ 文件夹，读取整个项目代码与配置，基于当前实际实现重新构建 prd/ 下的 PRD 文档体系。不要只同步根目录 prd.md；请按模块生成标准化 PRD，维护总览文档、代码文件映射、数据结构、业务逻辑和 PRD 间关联关系。
 ```
 
-### 第九步：最终交付说明
+### 第九步：生成根目录 README.md
+
+在 `prd/` 文档体系重建、`TODO.md` 收尾后，必须创建或更新仓库根目录 `README.md`。README 面向项目使用者和后续开发者，必须基于当前实际代码、脚本和配置生成，不要从模板臆测不存在的能力。
+
+README 至少包含：
+
+- 产品名称、简短介绍和核心功能列表；只写已经实现的功能。
+- 技术栈、运行环境和实际包管理器。
+- 安装、开发启动、构建、验证命令；命令必须来自当前 `package.json` 的 scripts 或本次实际执行过的命令。
+- 项目目录结构概览，列出主要入口、组件、服务/API 封装、配置和 `prd/` 文档位置。
+- 使用说明：Next.js 写访问 URL；Electron 写开发启动与构建方式；Chrome Extension 写加载已解压扩展的步骤和实际入口。
+- 若项目需要 API Key 或本地配置，说明保存位置和占位格式，不得写入真实密钥；Chrome Extension 说明在 options/popup 中保存到 `localStorage` / `chrome.storage.local` 这类插件本地存储。
+- 文档索引，链接到根目录 `prd.md`、`TODO.md` 和 `prd/` 下的总览文档。
+
+如果 README 已存在，读取旧内容作为参考，但以当前实现为准更新，移除过时功能、错误命令和不再存在的路径。
+
+### 第十步：最终交付说明
 
 最终回复必须让用户能从当前仓库继续操作，不只汇报“代码已完成”：
 
-- 说明已完成哪些开发、依赖是否已安装、验证命令与结果、`prd/` 重建了哪些文档、`TODO.md` 还剩什么。
+- 说明已完成哪些开发、依赖是否已安装、验证命令与结果、`prd/` 重建了哪些文档、根目录 `README.md` 是否已创建或更新、`TODO.md` 还剩什么。
 - 列出实际使用的包管理器和关键命令；命令必须来自当前 `package.json` 的 scripts 或本次实际执行过的命令，不要编造不存在的脚本。
 - 给出项目运行方式：Next.js 说明启动命令和实际访问 URL；Electron 说明开发启动命令和可用的打包/构建命令；普通 Web/Vite 项目说明预览或开发服务 URL。
 - 浏览器插件必须给出 Chrome 安装步骤：先运行构建命令生成实际输出目录（默认 `dist_chrome`，以项目真实配置为准），打开 `chrome://extensions/`，开启「开发者模式」，点击「加载已解压的扩展程序」，选择该输出目录；后续修改代码后重新构建，并在扩展管理页点击刷新。
@@ -180,4 +196,5 @@ Token Plan 提示文案：
 - [ ] 已安装/确认依赖并保持锁文件与 `package.json` 一致；若未能安装，已说明原因和用户可执行命令。
 - [ ] 已运行可用验证命令并处理结果。
 - [ ] 已调用 update-prd 创建或重建 `prd/` 文档体系。
+- [ ] 已创建或更新仓库根目录 `README.md`，并确保内容与当前代码、脚本、配置和 `prd/` 文档一致。
 - [ ] 已在最终回复中提供运行、安装或加载工具的操作说明；浏览器插件已说明 Chrome 加载已解压扩展的步骤。
