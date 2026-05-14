@@ -1,4 +1,4 @@
 interface:
   display_name: "01 MVP PRD Builder"
-  short_description: "AskQuestion 六题加架构分析生成固定格式 PRD"
-  default_prompt: "Use $mvp-prd-builder to ask what product I want to build, then use AskQuestion for six choice questions and generate a fixed-format prd.md."
+  short_description: "递进式 AskQuestion 六题加架构分析生成固定格式 PRD"
+  default_prompt: "Use $01-mvp-prd-builder to ask what product I want to build, then use AskQuestion for six adaptive choice questions and generate a fixed-format prd.md."
