@@ -20,3 +20,5 @@ __pycache__/
 
 /.codex/skills/ui-ux-pro-max/data/__pycache__
 /.codex/skills/ui-ux-pro-max/scripts/__pycache__
+/tmp
+/tools
