@@ -13,7 +13,7 @@ SiliconFlow Chat Completions 接口，兼容 OpenAI Chat Completions 调用方�
 | 鉴权 | `Authorization: Bearer <SILICONFLOW_API_KEY>` |
 | `Content-Type` | `application/json` |
 | LLM 示例模型 | `deepseek-ai/DeepSeek-V4.1-Flash` |
-| VLM 示例模型 | `zai-org/GLM-4.6V` |
+| VLM 示例模型 | `deepseek-ai/DeepSeek-V4.1-Flash` |
 
 模型列表会随平台调整，实际可用模型以 SiliconFlow 控制台 Models 页面为准。
 
@@ -169,7 +169,7 @@ curl --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${SILICONFLOW_API_KEY}" \
   --data '{
-    "model": "zai-org/GLM-4.6V",
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
     "messages": [
       {
         "role": "user",
@@ -201,7 +201,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="zai-org/GLM-4.6V",
+    model="deepseek-ai/DeepSeek-V4.1-Flash",
     messages=[
         {
             "role": "user",

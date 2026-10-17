@@ -41,8 +41,9 @@
 
 ### 2026-10-17
 
-- 已完成：`API文档/LLM文本生成.md` 的 LLM 示例模型由 `Pro/zai-org/GLM-4.7` 改为 `deepseek-ai/DeepSeek-V4.1-Flash`（概览表 + curl/Python/JS/流式 4 处示例）；VLM 示例 `zai-org/GLM-4.6V` 未改动。
-- ✅ 验证：`grep` 确认仓库内已无 `GLM-4.7` 残留。
+- 已完成：`API文档/LLM文本生成.md` 的 LLM 示例模型由 `Pro/zai-org/GLM-4.7` 改为 `deepseek-ai/DeepSeek-V4.1-Flash`（概览表 + curl/Python/JS/流式 4 处示例）；随后 VLM 示例 `zai-org/GLM-4.6V`（概览表 + curl/Python 2 处示例）也按用户要求改为同一模型。
+- ✅ 验证：`grep` 确认 `API文档/` 内已无 `GLM` 残留。
+- ⚠️ 待确认：`deepseek-ai/DeepSeek-V4.1-Flash` 是否支持图片输入未经实际调用验证；接入 VLM 前需在 SiliconFlow 控制台 Models 页面确认，不支持时需换回视觉模型。
 - ⚠️ 未提供 `package.json`，本轮无 lint / test / typecheck 可执行。
 - 已完成：`03-project-develop` 默认改为轻量验证（lint/test/类型检查 + 核心路径冒烟），只勾有证据的 §2 项，其余标「⏳ 待验收」；全量 `project-verify` 仅在用户明确要求时执行。同步修改 `project-iterate` 对照表与 `project-verify` 的触发/范围说明，与书稿 5.2 节「03 自检不冒充正式验收」一致。
 - ✅ 验证：`quick_validate.py` 校验 `03-project-develop`、`project-iterate`、`project-verify` 均通过；`grep` 确认 Skills 中已无「03 默认全量 project-verify」表述。
