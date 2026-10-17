@@ -39,6 +39,14 @@
 - ⚠️ 未提供 `package.json`，因此本轮无 `npm run lint`、`npm run test`、`npm run typecheck` 可执行。后续加入可运行样例项目时，应补齐三项 script。
 - ✅ 环境验证：桌面应用内置 Codex CLI 可启动并加载配置；项目级 Profile 不需要复制到用户目录。`codex doctor` 的本地状态库和网络诊断告警属于当前机器环境，不属于本仓库迁移项。
 
+### 2026-10-17
+
+- 已完成：`API文档/LLM文本生成.md` 的 LLM 示例模型由 `Pro/zai-org/GLM-4.7` 改为 `deepseek-ai/DeepSeek-V4.1-Flash`（概览表 + curl/Python/JS/流式 4 处示例）；VLM 示例 `zai-org/GLM-4.6V` 未改动。
+- ✅ 验证：`grep` 确认仓库内已无 `GLM-4.7` 残留。
+- ⚠️ 未提供 `package.json`，本轮无 lint / test / typecheck 可执行。
+- 已完成：`03-project-develop` 默认改为轻量验证（lint/test/类型检查 + 核心路径冒烟），只勾有证据的 §2 项，其余标「⏳ 待验收」；全量 `project-verify` 仅在用户明确要求时执行。同步修改 `project-iterate` 对照表与 `project-verify` 的触发/范围说明，与书稿 5.2 节「03 自检不冒充正式验收」一致。
+- ✅ 验证：`quick_validate.py` 校验 `03-project-develop`、`project-iterate`、`project-verify` 均通过；`grep` 确认 Skills 中已无「03 默认全量 project-verify」表述。
+
 ## 审计保留项
 
 - `Books/第01章-什么是AgenticCoding/1.1-VibeCoding的价值和边界.md` 仍以 Google AI Studio / Gemini 作为历史对比示例；它是教程正文，不参与脚手架运行。若教程也要只介绍 Codex，可另行统一改写示例与配图。

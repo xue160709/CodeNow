@@ -1,13 +1,13 @@
 ---
 name: 03-project-develop
-description: 首版 MVP 专用：按 TODO.md、prd.md、design-system/ 搭建并交付可运行 TypeScript 项目（Next.js/Electron/Chrome Extension），含全量 project-verify、update-prd 与 README。已有代码库的日常迭代请用 project-iterate，不要用本 Skill。
+description: 首版 MVP 专用：按 TODO.md、prd.md、design-system/ 搭建并交付可运行 TypeScript 项目（Next.js/Electron/Chrome Extension），默认只做轻量验证（lint/test/类型检查 + 核心路径冒烟），用户明确要求时才跑全量 project-verify；含 update-prd 与 README。已有代码库的日常迭代请用 project-iterate，不要用本 Skill。
 ---
 
 # Project Develop：TODO.md → 框架实现 → 依赖安装 → 验证 → 重建 prd/ 与 README.md → 交付指引
 
 ## 首版 MVP 专用
 
-本 Skill 面向**第一次**把项目做成可运行 MVP：脚手架、全量实现、依赖安装、**全量** `project-verify`、`update-prd`、README 与协作文件。
+本 Skill 面向**第一次**把项目做成可运行 MVP：脚手架、全量实现、依赖安装、**轻量验证**（全量 `project-verify` 仅在用户明确要求时执行）、`update-prd`、README 与协作文件。
 
 **已有代码库的日常迭代**（继续 TODO、修 bug、小功能）请用 **`project-iterate`**，不要每次唤起本 Skill。
 
@@ -185,14 +185,26 @@ Token Plan 提示文案：
 
 ### 第七步：验证
 
-- 读取并执行 `.codex/skills/project-verify/SKILL.md`。**按 TODO §2 验收标准逐条验证并回写打勾**，不要只做 lint/test/typecheck 后口头说「手动走查通过」。
-- 默认验证运行 lint / test / 类型检查；`build` 不作为默认验证项，仅在用户明确要求、发布/打包、验证构建产物或浏览器插件加载目录时按需执行。
-- 若 project-verify 因阻塞（lint/test/typecheck 失败、服务起不来）无法继续，先修复 03 引入的问题并重跑 project-verify；无法修复时在最终回复说明，且不得无证据勾选 §2 验收标准。
+**默认轻量验证，不跑全量 `project-verify`。** 首版 MVP 范围大，全量逐条验收耗时长、占上下文，容易把交付拖垮；默认只证明「项目能装、能起、主流程能走通」，逐条验收留给用户按需触发或后续 `project-iterate` 增量验证。
+
+默认（每次必做）：
+
+- 静态验证：运行项目已有的 lint / test / 类型检查（无 script 时记录 `⚠️ 未提供该 script` 并补建议）；`build` 不作为默认验证项，仅在用户明确要求、发布/打包、验证构建产物或浏览器插件加载目录时按需执行。
+- 核心路径冒烟：启动开发服务（或按框架 reference 的最小启动方式），确认主入口可打开、首屏无报错，并走通 TODO 中最核心的一条用户路径（含未配置 API Key 时的引导/降级态）；非 UI 逻辑以相关单测或 CLI/curl smoke 作为证据。
+- TODO 回写：只勾选本轮**有证据**的 §2 验收项；未逐条验证的 §2 项保持未勾选，并在验证记录写明「⏳ 待验收：未执行全量 project-verify」，不得因代码已写完就打勾。
+
+全量验证（仅在用户明确要求时，如「全量验收」「全部打勾」「跑 project-verify」）：
+
+- 读取并执行 `.codex/skills/project-verify/SKILL.md`，声明范围为**全量 §2**，按验收标准逐条验证并回写打勾，不要只做 lint/test/typecheck 后口头说「手动走查通过」。
+
+通用：
+
+- 若验证因阻塞（lint/test/typecheck 失败、服务起不来）无法继续，先修复 03 引入的问题并重跑；无法修复时在最终回复说明，且不得无证据勾选 §2 验收标准。
 - 交付 MVP Web UI 前，为 `project-verify/references/selector-and-testid.md` 范围内的可交互元素预埋 `data-testid`；动态验收方式见 `project-verify/references/browser-playwright.md` 与对应框架 reference。缺 testid 不得无证据勾选 §2。
 
 ### 第八步：调用 update-prd 重建 prd/ 与 TODO
 
-开发、依赖安装、**project-verify** 和 TODO 收尾完成后：
+开发、依赖安装、**第七步验证**（默认轻量；用户要求时为全量 project-verify）和 TODO 收尾完成后：
 
 1. 读取 `.codex/skills/update-prd/SKILL.md`。
 2. 明确向 `update-prd` 声明本次任务：创建仓库根目录 `prd/` 文件夹；读取整个项目；基于实际代码重新构建 `prd/` 文件夹里的 PRD 文档，而不是只局部修补根目录 `prd.md`。
@@ -234,7 +246,7 @@ README 至少包含：
 
 最终回复必须让用户能从当前仓库继续操作，不只汇报“代码已完成”：
 
-- 说明已完成哪些开发、依赖是否已安装、验证命令与结果、`prd/` 重建了哪些文档、根目录 `README.md` 与 `AGENTS.md` 是否已创建或更新、**`TODO.md` 还剩什么（含 §10 与开发进度中的阻塞项）**。
+- 说明已完成哪些开发、依赖是否已安装、验证命令与结果（注明本次为轻量验证还是全量 project-verify；轻量时提示用户可要求「全量验收」）、`prd/` 重建了哪些文档、根目录 `README.md` 与 `AGENTS.md` 是否已创建或更新、**`TODO.md` 还剩什么（含 §10 与开发进度中的阻塞项）**。
 - 列出实际使用的包管理器和关键命令；命令必须来自当前 `package.json` 的 scripts 或本次实际执行过的命令，不要编造不存在的脚本。
 - 给出项目运行方式：Next.js 说明启动命令和实际访问 URL；Electron 说明 `npm run dev`（须为 `electron-vite dev --watch` 或等效 watch 配置）、三类开发刷新差异（renderer HMR / preload 刷新 / main 重启）和 `npm run preview`（如有）；`npm run build` 仅作为打包/发布或构建产物验证的按需命令说明；普通 Web/Vite 项目说明预览或开发服务 URL。
 - 浏览器插件如需安装到 Chrome，必须给出按需构建与安装步骤：运行构建命令生成实际输出目录（默认 `dist_chrome`，以项目真实配置为准），打开 `chrome://extensions/`，开启「开发者模式」，点击「加载已解压的扩展程序」，选择该输出目录；后续修改代码后仅在需要更新已加载扩展时重新构建，并在扩展管理页点击刷新。该构建不属于默认验收项。
@@ -260,7 +272,7 @@ README 至少包含：
 - [ ] 若 Chrome Extension 使用 API 文档里的 API，未创建 `.env` / `.env.local` 作为默认方案，已实现 options/popup 的 Key 输入、`localStorage` / `chrome.storage.local` 插件本地存储、读取和清除能力。
 - [ ] 已保护 API Key，不进入公开前端代码或插件包。
 - [ ] 已安装/确认依赖并保持锁文件与 `package.json` 一致；若未能安装，已说明原因和用户可执行命令。
-- [ ] 已运行 `project-verify`，§2 验收标准与 §8 验证项已按证据回写 TODO（无无证据打勾）
+- [ ] 已完成默认轻量验证（lint/test/类型检查 + 核心路径冒烟）；仅在用户明确要求时运行全量 `project-verify`；§2 / §8 只按证据回写 TODO，未验证项已标「⏳ 待验收」（无无证据打勾）
 - [ ] 若是 Electron：`package.json` 的 `dev` 已含 `electron-vite dev --watch` 或 config 已开 main/preload `build.watch`。
 - [ ] 若是 Electron：main 在 dev 态使用 `process.env.ELECTRON_RENDERER_URL`，未硬编码 localhost 端口。
 - [ ] 若是 Electron：已按「开发顺序」验收 renderer HMR、preload 刷新、main 重启；若无法跑 GUI，已在回复中说明配置已核对项与用户本地验证步骤。

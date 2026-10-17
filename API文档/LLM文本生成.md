@@ -12,7 +12,7 @@ SiliconFlow Chat Completions 接口，兼容 OpenAI Chat Completions 调用方�
 | Endpoint | `POST https://api.siliconflow.cn/v1/chat/completions` |
 | 鉴权 | `Authorization: Bearer <SILICONFLOW_API_KEY>` |
 | `Content-Type` | `application/json` |
-| LLM 示例模型 | `Pro/zai-org/GLM-4.7` |
+| LLM 示例模型 | `deepseek-ai/DeepSeek-V4.1-Flash` |
 | VLM 示例模型 | `zai-org/GLM-4.6V` |
 
 模型列表会随平台调整，实际可用模型以 SiliconFlow 控制台 Models 页面为准。
@@ -84,7 +84,7 @@ curl --request POST \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${SILICONFLOW_API_KEY}" \
   --data '{
-    "model": "Pro/zai-org/GLM-4.7",
+    "model": "deepseek-ai/DeepSeek-V4.1-Flash",
     "messages": [
       {"role": "system", "content": "你是一个有用的助手"},
       {"role": "user", "content": "你好，请介绍一下你自己"}
@@ -105,7 +105,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="Pro/zai-org/GLM-4.7",
+    model="deepseek-ai/DeepSeek-V4.1-Flash",
     messages=[
         {"role": "system", "content": "你是一个有用的助手"},
         {"role": "user", "content": "你好，请介绍一下你自己"},
@@ -125,7 +125,7 @@ const response = await fetch("https://api.siliconflow.cn/v1/chat/completions", {
     Authorization: `Bearer ${process.env.SILICONFLOW_API_KEY}`,
   },
   body: JSON.stringify({
-    model: "Pro/zai-org/GLM-4.7",
+    model: "deepseek-ai/DeepSeek-V4.1-Flash",
     messages: [
       { role: "system", content: "你是一个有用的助手" },
       { role: "user", content: "你好，请介绍一下你自己" },
@@ -148,7 +148,7 @@ client = OpenAI(
 )
 
 stream = client.chat.completions.create(
-    model="Pro/zai-org/GLM-4.7",
+    model="deepseek-ai/DeepSeek-V4.1-Flash",
     messages=[{"role": "user", "content": "用三句话解释什么是流式输出"}],
     stream=True,
 )

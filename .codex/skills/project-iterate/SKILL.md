@@ -12,7 +12,7 @@ description: 已有代码库上的日常迭代开发。以 TODO.md 和 prd/ 为�
 | **本 Skill** | 已有代码 + `TODO.md`；日常改代码、做下一项任务、修 bug |
 | `product-discovery` | 日常聊新想法、排优先级、pivot；想法尚未进 TODO 或 prd |
 | `02-project-prepare` | 还没有合格 TODO / 规格，或要从粗 PRD 重新规划 |
-| `03-project-develop` | **首版 MVP**：脚手架、全量实现、依赖交付、**全量 project-verify**、**update-prd**、README |
+| `03-project-develop` | **首版 MVP**：脚手架、全量实现、依赖交付、**轻量验证**（全量 project-verify 需用户明确要求）、**update-prd**、README |
 | `project-verify` | 执行验收打勾；本 Skill 完成后**按需**唤起（可指定范围） |
 | `update-prd` | 里程碑同步文档；**不要**每次迭代默认跑 |
 | `project-debug` | 报错、行为不对时排查 |

@@ -11,7 +11,7 @@ description: |
 | 模式 | 触发 | 行为 |
 | --- | --- | --- |
 | **Guide 模式** | 用户要测试规范、`data-testid`、`TESTING_CHECKLIST`、Playwright 步骤 | 只生成/更新测试资料与建议；不默认执行全量验收，不随意打勾 TODO |
-| **Verify 模式** | 用户要求验收、打勾、跑验证，或 `project-iterate` / `03-project-develop` 完成后 | 读取 `TODO.md`，执行静态与动态验证，按证据回写 checkbox 与验证记录 |
+| **Verify 模式** | 用户要求验收、打勾、跑验证，或 `project-iterate` 按需唤起；`03-project-develop` 默认不唤起，仅在用户明确要求全量验收时唤起 | 读取 `TODO.md`，执行静态与动态验证，按证据回写 checkbox 与验证记录 |
 
 边界：本 Skill 管“怎么测、测什么、证据如何落地”。验证失败后的根因排查和修代码交给 `project-debug` / `project-iterate`；修完后回到本 Skill 复验。
 
@@ -44,7 +44,7 @@ description: |
 
 - 读取 `TODO.md`：主框架、§2 验收标准、§8 验证、§3 入口、API Key / 外部服务约束。
 - 读取 `package.json` scripts 和锁文件，确认包管理器与命令。
-- 确认验证范围：默认验证本轮相关 §2.x；用户要求“全部验收/打勾”或里程碑时再全量 §2。
+- 确认验证范围：默认验证本轮相关 §2.x；用户明确要求“全部验收/打勾/全量验收”时再全量 §2（`03-project-develop` 首版交付同样遵循此规则，不自动全量）。
 - 无 `TESTING_CHECKLIST.md` 时，按本轮范围读取 `references/checklist-template.md` 生成；全量验证时覆盖全部 §2。
 
 若 §2 缺失或不可执行，先让 `qa-acceptance-planner` 补验收标准，再继续验证。
@@ -119,7 +119,7 @@ description: |
 
 ## 与其它 Skill 的关系
 
-- `03-project-develop` / `project-iterate`：负责实现与预埋 testid；完成后可调用本 Skill 验收。
+- `03-project-develop` / `project-iterate`：负责实现与预埋 testid；03 默认只做轻量验证，用户明确要求时才调用本 Skill 全量验收；iterate 按需带范围调用。
 - `project-debug`：负责失败项排查、加探针、修复；修完回到本 Skill 复验。
 - `qa-acceptance-planner`：负责补可执行验收标准；本 Skill 不凭空扩写产品范围。
 
